@@ -8,7 +8,7 @@ label start:
     $lvl = 1
     while True:
         'your level is [lvl]'
-        $check_events()
+        call check_events
         'keep training'
         '....'
         'nice!'

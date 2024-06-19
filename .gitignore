@@ -1,0 +1,9 @@
+*.rpyc
+*.rpyb
+game/cache
+game/saves
+*.txt
+*.json
+*.bak
+*new
+*old

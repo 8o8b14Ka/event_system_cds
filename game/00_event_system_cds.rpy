@@ -1,3 +1,5 @@
+
+
 python early:
     def parse_check(lexer):
         subblock_lexer = lexer.subblock_lexer()
@@ -22,7 +24,20 @@ python early:
     )
 
 init python:
-    def check_events():
-        for event_label in renpy.get_all_labels():
-            if event_label.startswith('event_'):
-                renpy.call(event_label)
+    events = [label for label in renpy.get_all_labels() if label.startswith('event_')]
+
+    def ev_check(*args,p=''):
+        if args:
+            parg = args[0]
+        else:
+            parg = p
+        renpy.call('check_events',p=parg)
+
+
+label check_events(p=''):
+    $prefix = p
+    $prefix_events = [ev for ev in events if ev.startswith('event_'+prefix)]
+    $i = 0
+    while i<len(prefix_events):
+        $renpy.call(prefix_events[i])
+        $i+=1
